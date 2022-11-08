@@ -55,4 +55,71 @@ Promise.all([fetchJSON("fullplayers"), fetchJSON("solution")]).then(
     }/${game.solution.id}.png`;
   
   }
+
 );
+
+
+function check(theKey, theValue) {
+
+  switch (theKey) {
+    /*case theKey === ("nationality" || "leagueId" || "teamId" || "position"):
+      if (game.solution[theKey] == theValue){
+        return true;
+
+      }else{
+        return false;
+
+     }
+    break;
+    */
+    case theKey === "birthdate":
+
+      if (getAge(game.solution[theKey]) == getAge(theValue)){
+          return true;
+
+      }else if (getAge(game.solution[theKey]) >= getAge(theValue)){
+          return "lower";
+
+      }else{
+          return "higher"
+
+      }
+        
+    break;
+
+    case theKey === "number":
+
+      if (game.solution[theKey] == theValue){
+        return true;
+
+      }else if (game.solution[theKey] >= theValue){
+        return "lower";
+
+      }else{
+        return "higher"
+
+      }
+
+
+    break;
+
+    default:
+
+      if (game.solution[theKey] == theValue){
+        return true;
+
+      }else{
+        return false;
+
+      }    
+      break;
+  }
+
+}
+
+
+function getPlayer(playerId){
+
+  return game.players.filter(item => item.id == playerId)[0]
+
+}
