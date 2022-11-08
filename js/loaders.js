@@ -1,5 +1,7 @@
 export { fetchJSON };
 
 async function fetchJSON(what) {
-    return await fetch(what).then(r=>r.json());
+    return new Promise((resolve, reject)=>{
+        fetch("json/"+what+".json").then(r=>{resolve(r.json())}).catch(e=>reject());
+    })
 }
