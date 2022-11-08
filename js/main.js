@@ -7,8 +7,9 @@ function differenceInDays(date1) {
     let fechaFin = date.getTime();
     
     let dif = Math.abs(fechaFin - fechaInicio);
-    return dif/(1000*60*60*24);
 
+    //return (dif/(1000*60*60*24));
+    return 15;
 
 }
 
@@ -22,16 +23,17 @@ window.onload = function () {
 };
 
 let game = {
-  guesses: [],
+  guesses: [],  
   solution: {},
   players: [],
   leagues: []
 };
 
  function getSolution(players, solutionArray, difference_In_Days) {
-    let player = players.reduce(item => item.id = solutionArray[difference_In_Days-1].id);
-    return player;
-    
+    let solPlayer = solutionArray[difference_In_Days-1];
+    console.log(solPlayer)
+    let player = players.filter(item => item.id == solPlayer.id);
+    return player[0];
 }
 
 Promise.all([fetchJSON("fullplayers"), fetchJSON("solution")]).then(
