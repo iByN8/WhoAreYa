@@ -1,6 +1,7 @@
 import { folder, leftArrow } from "./fragments.js";
 import { fetchJSON } from "./loaders.js";
-import { getAge } from "./rows.js";
+import { getAge, setupRows} from "./rows.js";
+
 
 function differenceInDays(date1) {
     const date = new Date()

@@ -1,17 +1,23 @@
 // YOUR CODE HERE :  
 // .... stringToHTML ....
-// .... setupRows .....
+import {stringToHTML} from "./fragments.js"
+import { fetchJSON } from "./loaders.js";
 export { fetchJSON };
+
+// .... setupRows .....
+export {setupRows}
 
 const delay = 350;
 const attribs = ['nationality', 'leagueId', 'teamId', 'position', 'birthdate']
-
+const competitions = await fetch("json/competitions.json").then(r => r.json()).then(r => r.competitions)
 
 let setupRows = function (game) {
 
 
     function leagueToFlag(leagueId) {
-        // YOUR CODE HERE
+        
+        return competitions.filter(item => item.id == leagueId)[0].name
+        
     }
 
 
