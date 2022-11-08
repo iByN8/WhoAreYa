@@ -1,7 +1,5 @@
 export { fetchJSON };
 
 async function fetchJSON(what) {
-
-    // YOUR CODE HERE
-
+    return await fetch(what).then(r=>r.json());
 }

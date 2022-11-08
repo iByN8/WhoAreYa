@@ -2,7 +2,14 @@ import { folder, leftArrow } from "./fragments.js";
 import { fetchJSON } from "./loaders.js";
 
 function differenceInDays(date1) {
-    // YOUR CODE HERE
+    const date = new Date()
+    let fechaInicio = date1.getTime();
+    let fehaFin = date.getTime();
+    
+    let dif = Math.abs(fechaFin - fechaInicio);
+    return dif/(1000*60*60*24);
+
+
 }
 
 let difference_In_Days = differenceInDays(new Date("08-18-2022"));
@@ -22,8 +29,10 @@ let game = {
 };
 
 function getSolution(players, solutionArray, difference_In_Days) {
- 
-    // YOUR CODE HERE 
+    let jsonPlayers = fetchJSON(players);
+    let jsonSolArray = fetchJSON(solutionArray);
+    let solPlayer = jsonSolArray[difference_In_Days-1];
+    let player = jsonPlayers.filter( r => r.id = solPlayer.id);
 }
 
 Promise.all([fetchJSON("fullplayers"), fetchJSON("solution")]).then(
