@@ -1,6 +1,6 @@
 import { folder, leftArrow } from "./fragments.js";
 import { fetchJSON } from "./loaders.js";
-import { getAge, setupRows} from "./rows.js";
+import {setupRows} from "./rows.js";
 
 
 function differenceInDays(date1) {
@@ -11,7 +11,7 @@ function differenceInDays(date1) {
   let dif = Math.abs(fechaFin - fechaInicio);
 
   //return (dif/(1000*60*60*24));
-  return 15;
+  return 16;
 }
 
 let difference_In_Days = differenceInDays(new Date("08-18-2022"));
@@ -56,10 +56,17 @@ Promise.all([fetchJSON("fullplayers"), fetchJSON("solution")]).then(
 
 
       // YOUR CODE HERE
-    let addRow = setupRows( /* THIS NEEDS A PARAMETER */ );
+    let addRow = setupRows( game );
     // get myInput object...
+    let myInput =  document.getElementById('myInput')
       // when the user types a number an press the Enter key:
-        addRow( /* the ID of the player, where is it? */);
+    myInput.addEventListener('keypress', function(event){
+      if (event.key == "Enter"){
+        addRow(myInput.value);
+      }
+        
+    })
+        
     //  
 
 

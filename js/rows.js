@@ -2,8 +2,6 @@
 // .... stringToHTML ....
 import {stringToHTML} from "./fragments.js"
 import { fetchJSON } from "./loaders.js";
-export { fetchJSON };
-
 // .... setupRows .....
 export {setupRows}
 
@@ -15,8 +13,8 @@ let setupRows = function (game) {
 
 
     function leagueToFlag(leagueId) {
-        
-        return competitions.filter(item => item.id == leagueId)[0].name
+        console.log(competitions.filter(item => item.plan == "TIER_ONE"))
+        return competitions.filter(item => item.id == leagueId)[0]
         
     }
 
@@ -29,16 +27,13 @@ let setupRows = function (game) {
         var mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
         var yyyy = today.getFullYear();
 
-        console.log(dd)
-        console.log(mm)
-        console.log(yyyy)
-        if(mm<arraySeparado[0]){
+        if(mm<arraySeparado[1]){
             edad=edad+1;
-        }else if(mm=arraySeparado[0] && dd<arraySeparado[1]){
+        }else if(mm=arraySeparado[1] && dd<arraySeparado[2]){
             edad=edad+1;
         }
 
-        edad=edad+(yyyy-arraySeparado[2]-1);
+        edad=edad+(yyyy-arraySeparado[0]-1);
         return edad;
     }
     
@@ -101,7 +96,7 @@ let setupRows = function (game) {
     function setContent(guess) {
         return [
             `<img src="https://playfootball.games/who-are-ya/media/nations/${guess.nationality.toLowerCase()}.svg" alt="" style="width: 60%;">`,
-            `<img src="https://playfootball.games/media/competitions/${leagueToFlag(guess.leagueId)}.png" alt="" style="width: 60%;">`,
+            `<img src="https://crests.football-data.org/784.svg" alt="" style="width: 60%;">`,
             `<img src="https://cdn.sportmonks.com/images/soccer/teams/${guess.teamId % 32}/${guess.teamId}.png" alt="" style="width: 60%;">`,
             `${guess.position}`,
             `${getAge(guess.birthdate)}`
