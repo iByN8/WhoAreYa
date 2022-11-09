@@ -1,17 +1,8 @@
 import { folder, leftArrow } from "./fragments.js";
 import { fetchJSON } from "./loaders.js";
-import { getAge, setupRows} from "./rows.js";
-
 
 function differenceInDays(date1) {
-    const date = new Date()
-  let fechaInicio = date1.getTime();
-  let fechaFin = date.getTime();
-  
-  let dif = Math.abs(fechaFin - fechaInicio);
-
-  //return (dif/(1000*60*60*24));
-  return 15;
+    // YOUR CODE HERE
 }
 
 let difference_In_Days = differenceInDays(new Date("08-18-2022"));
@@ -31,10 +22,8 @@ let game = {
 };
 
 function getSolution(players, solutionArray, difference_In_Days) {
-  let solPlayer = solutionArray[difference_In_Days-1];
-    console.log(solPlayer)
-    let player = players.filter(item => item.id == solPlayer.id);
-    return player[0];
+ 
+    // YOUR CODE HERE 
 }
 
 Promise.all([fetchJSON("fullplayers"), fetchJSON("solution")]).then(

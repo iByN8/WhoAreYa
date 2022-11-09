@@ -1,101 +1,25 @@
 // YOUR CODE HERE :  
 // .... stringToHTML ....
-import {stringToHTML} from "./fragments.js"
-import { fetchJSON } from "./loaders.js";
-export { fetchJSON };
-
 // .... setupRows .....
-export {setupRows}
 
 const delay = 350;
 const attribs = ['nationality', 'leagueId', 'teamId', 'position', 'birthdate']
-const competitions = await fetch("json/competitions.json").then(r => r.json()).then(r => r.competitions)
+
 
 let setupRows = function (game) {
 
 
     function leagueToFlag(leagueId) {
-        
-        return competitions.filter(item => item.id == leagueId)[0].name
-        
+        // YOUR CODE HERE
     }
 
 
     function getAge(dateString) {
-        var edad = 0;
-        var arraySeparado = dateString.split("-");
-        var today = new Date();
-        var dd = String(today.getDate()).padStart(2, '0');
-        var mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
-        var yyyy = today.getFullYear();
-
-        console.log(dd)
-        console.log(mm)
-        console.log(yyyy)
-        if(mm<arraySeparado[0]){
-            edad=edad+1;
-        }else if(mm=arraySeparado[0] && dd<arraySeparado[1]){
-            edad=edad+1;
-        }
-
-        edad=edad+(yyyy-arraySeparado[2]-1);
-        return edad;
+        // YOUR CODE HERE
     }
     
     let check = function (theKey, theValue) {
-        switch (theKey) {
-            /*case theKey === ("nationality" || "leagueId" || "teamId" || "position"):
-              if (game.solution[theKey] == theValue){
-                return true;
-        
-              }else{
-                return false;
-        
-             }
-            break;
-            */
-            case theKey === "birthdate":
-        
-              if (getAge(game.solution[theKey]) == getAge(theValue)){
-                  return true;
-        
-              }else if (getAge(game.solution[theKey]) >= getAge(theValue)){
-                  return "lower";
-        
-              }else{
-                  return "higher"
-        
-              }
-                
-            break;
-        
-            case theKey === "number":
-        
-              if (game.solution[theKey] == theValue){
-                return true;
-        
-              }else if (game.solution[theKey] >= theValue){
-                return "lower";
-        
-              }else{
-                return "higher"
-        
-              }
-        
-        
-            break;
-        
-            default:
-        
-              if (game.solution[theKey] == theValue){
-                return true;
-        
-              }else{
-                return false;
-        
-              }    
-              break;
-          }
+            // YOUR CODE HERE
     }
 
     function setContent(guess) {
@@ -104,7 +28,7 @@ let setupRows = function (game) {
             `<img src="https://playfootball.games/media/competitions/${leagueToFlag(guess.leagueId)}.png" alt="" style="width: 60%;">`,
             `<img src="https://cdn.sportmonks.com/images/soccer/teams/${guess.teamId % 32}/${guess.teamId}.png" alt="" style="width: 60%;">`,
             `${guess.position}`,
-            `${getAge(guess.birthdate)}`
+            `${getAge(guess.birthdate)}` /* YOUR CODE HERE */
         ]
     }
 
@@ -132,7 +56,7 @@ let setupRows = function (game) {
     }
 
     let getPlayer = function (playerId) {
-        return game.players.filter(item => item.id == playerId)[0]  
+            // YOUR CODE HERE   
     }
 
     return /* addRow */ function (playerId) {
