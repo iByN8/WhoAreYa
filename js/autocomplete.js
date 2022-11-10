@@ -54,7 +54,7 @@ function autocomplete(inp, game) {
                     closeAllLists();
 
                     let addRose = setupRows(game)
-                    addRose(players.filter(item => item.name == inp.value)[0])
+                    addRose(players.filter(item => item.name == inp.value)[0].id)
                 });
                 a.appendChild(b);
             }

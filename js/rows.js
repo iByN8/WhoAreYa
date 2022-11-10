@@ -1,9 +1,11 @@
 // YOUR CODE HERE :  
 // .... stringToHTML ....
-import {stringToHTML} from "./fragments.js"
+import {stringToHTML} from "./fragments.js";
 import { fetchJSON } from "./loaders.js";
+import {higher,lower} from "./fragments.js";
 // .... setupRows .....
 export {setupRows}
+
 
 const delay = 350;
 const attribs = ['nationality', 'leagueId', 'teamId', 'position', 'birthdate']
@@ -38,7 +40,8 @@ let setupRows = function (game) {
     }
     
     let check = function (theKey, theValue) {
-        switch (theKey) {
+      console.log(theKey)
+       
             /*case theKey === ("nationality" || "leagueId" || "teamId" || "position"):
               if (game.solution[theKey] == theValue){
                 return true;
@@ -49,22 +52,24 @@ let setupRows = function (game) {
              }
             break;
             */
-            case theKey === "birthdate":
-        
-              if (getAge(game.solution[theKey]) == getAge(theValue)){
-                  return true;
-        
-              }else if (getAge(game.solution[theKey]) >= getAge(theValue)){
-                  return "lower";
-        
-              }else{
-                  return "higher"
-        
-              }
+           
+            if(theKey == 'birthdate') {
+              console.log("a entradooooooooooooooooooo")
+            if (getAge(game.solution[theKey]) == getAge(theValue)){
+                return true;
+      
+            }else if (getAge(game.solution[theKey]) >= getAge(theValue)){
+                return "lower";
+      
+            }else{
+                return "higher"
+      
+            }}
+              
                 
-            break;
+            
         
-            case theKey === "number":
+            /*case theKey == "number":
         
               if (game.solution[theKey] == theValue){
                 return true;
@@ -90,17 +95,35 @@ let setupRows = function (game) {
         
               }    
               break;
-          }
+          }*/
     }
 
     function setContent(guess) {
+      if(check("birthdate",guess.birthdate)=="lower"){
         return [
-            `<img src="https://playfootball.games/who-are-ya/media/nations/${guess.nationality.toLowerCase()}.svg" alt="" style="width: 60%;">`,
-            `<img src="https://playfootball.games/media/competitions/${leagueToFlag(guess.leagueId)}.png" alt="" style="width: 60%;">`,
-            `<img src="https://cdn.sportmonks.com/images/soccer/teams/${guess.teamId % 32}/${guess.teamId}.png" alt="" style="width: 60%;">`,
-            `${guess.position}`,
-            `${getAge(guess.birthdate)}`
-        ]
+          `<img src="https://playfootball.games/who-are-ya/media/nations/${guess.nationality.toLowerCase()}.svg" alt="" style="width: 60%;">`,
+          `<img src="https://playfootball.games/media/competitions/${leagueToFlag(guess.leagueId)}.png" alt="" style="width: 60%;">`,
+          `<img src="https://cdn.sportmonks.com/images/soccer/teams/${guess.teamId % 32}/${guess.teamId}.png" alt="" style="width: 60%;">`,
+          `${guess.position}`,
+          `${getAge(guess.birthdate)+lower}`
+      ]
+      }else if (check("birthdate",guess.birthdate)=="higher"){
+        return [
+          `<img src="https://playfootball.games/who-are-ya/media/nations/${guess.nationality.toLowerCase()}.svg" alt="" style="width: 60%;">`,
+          `<img src="https://playfootball.games/media/competitions/${leagueToFlag(guess.leagueId)}.png" alt="" style="width: 60%;">`,
+          `<img src="https://cdn.sportmonks.com/images/soccer/teams/${guess.teamId % 32}/${guess.teamId}.png" alt="" style="width: 60%;">`,
+          `${guess.position}`,
+          `${getAge(guess.birthdate)+higher}`
+      ]
+      }else{
+        return [
+          `<img src="https://playfootball.games/who-are-ya/media/nations/${guess.nationality.toLowerCase()}.svg" alt="" style="width: 60%;">`,
+          `<img src="https://playfootball.games/media/competitions/${leagueToFlag(guess.leagueId)}.png" alt="" style="width: 60%;">`,
+          `<img src="https://cdn.sportmonks.com/images/soccer/teams/${guess.teamId % 32}/${guess.teamId}.png" alt="" style="width: 60%;">`,
+          `${guess.position}`,
+          `${getAge(guess.birthdate)}`
+      ]
+      } 
     }
 
     function showContent(content, guess) {
