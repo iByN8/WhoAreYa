@@ -4,7 +4,7 @@ import {setupRows} from "./rows.js";
 import {autocomplete} from "./autocomplete.js"
 
 function differenceInDays(date1) {
-    const date = new Date()
+  const date = new Date()
   let fechaInicio = date1.getTime();
   let fechaFin = date.getTime();
   
@@ -32,9 +32,9 @@ let game = {
 
 function getSolution(players, solutionArray, difference_In_Days) {
   let solPlayer = solutionArray[difference_In_Days-1];
-    console.log(solPlayer)
-    let player = players.filter(item => item.id == solPlayer.id);
-    return player[0];
+  console.log(solPlayer)
+  let player = players.filter(item => item.id == solPlayer.id);
+  return player[0];
 }
 
 Promise.all([fetchJSON("fullplayers"), fetchJSON("solution")]).then(
@@ -56,19 +56,17 @@ Promise.all([fetchJSON("fullplayers"), fetchJSON("solution")]).then(
 
     autocomplete(document.getElementById("myInput"), game)
 
-      // YOUR CODE HERE
-    /*let addRow = setupRows( game );
+    /*
+    let addRow = setupRows( game );
     // get myInput object...
     let myInput =  document.getElementById('myInput')
       // when the user types a number an press the Enter key:
-    myInput.addEventListener('keypress', function(event){
-      if (event.key == "Enter"){
-        addRow(myInput.value);
-      }
-        
-    })
-        */
-    //  
+      myInput.addEventListener('keypress', function(event){
+        if (event.key == "Enter"){
+          addRow(myInput.value);
+        }
+      })
+    */
 
 
   }

@@ -1,23 +1,24 @@
-// YOUR CODE HERE :  
 // .... stringToHTML ....
 import {stringToHTML} from "./fragments.js";
 import { fetchJSON } from "./loaders.js";
 import {higher,lower} from "./fragments.js";
 // .... setupRows .....
 export {setupRows}
-
-
+// .... initState ....
+//
 const delay = 350;
 const attribs = ['nationality', 'leagueId', 'teamId', 'position', 'birthdate']
-const competitions = await fetch("json/competitions.json").then(r => r.json()).then(r => r.competitions)
+
 
 let setupRows = function (game) {
+
+
+    let [state, updateState] = initState('WAYgameState', game.solution.id)
 
 
     function leagueToFlag(leagueId) {
         console.log(competitions.filter(item => item.plan == "TIER_ONE"))
         return competitions.filter(item => item.id == leagueId)[0]
-        
     }
 
 
@@ -40,8 +41,6 @@ let setupRows = function (game) {
     }
     
     let check = function (theKey, theValue) {
-      console.log(theKey)
-       
             /*case theKey === ("nationality" || "leagueId" || "teamId" || "position"):
               if (game.solution[theKey] == theValue){
                 return true;
@@ -54,76 +53,95 @@ let setupRows = function (game) {
             */
            
             if(theKey == 'birthdate') {
-              console.log("a entradooooooooooooooooooo")
-            if (getAge(game.solution[theKey]) == getAge(theValue)){
-                return true;
-      
-            }else if (getAge(game.solution[theKey]) >= getAge(theValue)){
-                return "lower";
-      
-            }else{
-                return "higher"
-      
-            }}
-              
+              if (getAge(game.solution[theKey]) == getAge(theValue)){
+                  return true;
+        
+              }else if (getAge(game.solution[theKey]) >= getAge(theValue)){
+                  return lower;
+        
+              }else{
+                  return higher
+        
+              }}
                 
-            
-        
-            /*case theKey == "number":
-        
-              if (game.solution[theKey] == theValue){
-                return true;
-        
-              }else if (game.solution[theKey] >= theValue){
-                return "lower";
-        
-              }else{
-                return "higher"
-        
-              }
-        
-        
-            break;
-        
-            default:
-        
-              if (game.solution[theKey] == theValue){
-                return true;
-        
-              }else{
-                return false;
-        
-              }    
+                  
+              
+          
+              /*case theKey == "number":
+          
+                if (game.solution[theKey] == theValue){
+                  return true;
+          
+                }else if (game.solution[theKey] >= theValue){
+                  return "lower";
+          
+                }else{
+                  return "higher"
+          
+                }
+          
+          
               break;
-          }*/
+          
+              default:
+          
+                if (game.solution[theKey] == theValue){
+                  return true;
+          
+                }else{
+                  return false;
+          
+                }    
+                break;
+            }*/
     }
 
+        function unblur(outcome) {
+        return new Promise( (resolve, reject) =>  {
+            setTimeout(() => {
+                document.getElementById("mistery").classList.remove("hue-rotate-180", "blur")
+                document.getElementById("combobox").remove()
+                let color, text
+                if (outcome=='success'){
+                    color =  "bg-blue-500"
+                    text = "Awesome"
+                } else {
+                    color =  "bg-rose-500"
+                    text = "The player was " + game.solution.name
+                }
+                document.getElementById("picbox").innerHTML += `<div class="animate-pulse fixed z-20 top-14 left-1/2 transform -translate-x-1/2 max-w-sm shadow-lg rounded-lg pointer-events-auto ring-1 ring-black ring-opacity-5 overflow-hidden ${color} text-white"><div class="p-4"><p class="text-sm text-center font-medium">${text}</p></div></div>`
+                resolve();
+            }, "2000")
+        })
+    }
+
+
     function setContent(guess) {
-      if(check("birthdate",guess.birthdate)=="lower"){
-        return [
-          `<img src="https://playfootball.games/who-are-ya/media/nations/${guess.nationality.toLowerCase()}.svg" alt="" style="width: 60%;">`,
-          `<img src="https://playfootball.games/media/competitions/${leagueToFlag(guess.leagueId)}.png" alt="" style="width: 60%;">`,
-          `<img src="https://cdn.sportmonks.com/images/soccer/teams/${guess.teamId % 32}/${guess.teamId}.png" alt="" style="width: 60%;">`,
-          `${guess.position}`,
-          `${getAge(guess.birthdate)+lower}`
-      ]
-      }else if (check("birthdate",guess.birthdate)=="higher"){
-        return [
-          `<img src="https://playfootball.games/who-are-ya/media/nations/${guess.nationality.toLowerCase()}.svg" alt="" style="width: 60%;">`,
-          `<img src="https://playfootball.games/media/competitions/${leagueToFlag(guess.leagueId)}.png" alt="" style="width: 60%;">`,
-          `<img src="https://cdn.sportmonks.com/images/soccer/teams/${guess.teamId % 32}/${guess.teamId}.png" alt="" style="width: 60%;">`,
-          `${guess.position}`,
-          `${getAge(guess.birthdate)+higher}`
-      ]
-      }else{
-        return [
-          `<img src="https://playfootball.games/who-are-ya/media/nations/${guess.nationality.toLowerCase()}.svg" alt="" style="width: 60%;">`,
-          `<img src="https://playfootball.games/media/competitions/${leagueToFlag(guess.leagueId)}.png" alt="" style="width: 60%;">`,
-          `<img src="https://cdn.sportmonks.com/images/soccer/teams/${guess.teamId % 32}/${guess.teamId}.png" alt="" style="width: 60%;">`,
-          `${guess.position}`,
-          `${getAge(guess.birthdate)}`
-      ]
-      } 
+        if(check("birthdate",guess.birthdate)=="lower"){
+            return [
+              `<img src="https://playfootball.games/who-are-ya/media/nations/${guess.nationality.toLowerCase()}.svg" alt="" style="width: 60%;">`,
+              `<img src="https://playfootball.games/media/competitions/${leagueToFlag(guess.leagueId)}.png" alt="" style="width: 60%;">`,
+              `<img src="https://cdn.sportmonks.com/images/soccer/teams/${guess.teamId % 32}/${guess.teamId}.png" alt="" style="width: 60%;">`,
+              `${guess.position}`,
+              `${getAge(guess.birthdate)+lower}`
+          ]
+          }else if (check("birthdate",guess.birthdate)=="higher"){
+            return [
+              `<img src="https://playfootball.games/who-are-ya/media/nations/${guess.nationality.toLowerCase()}.svg" alt="" style="width: 60%;">`,
+              `<img src="https://playfootball.games/media/competitions/${leagueToFlag(guess.leagueId)}.png" alt="" style="width: 60%;">`,
+              `<img src="https://cdn.sportmonks.com/images/soccer/teams/${guess.teamId % 32}/${guess.teamId}.png" alt="" style="width: 60%;">`,
+              `${guess.position}`,
+              `${getAge(guess.birthdate)+higher}`
+          ]
+          }else{
+            return [
+              `<img src="https://playfootball.games/who-are-ya/media/nations/${guess.nationality.toLowerCase()}.svg" alt="" style="width: 60%;">`,
+              `<img src="https://playfootball.games/media/competitions/${leagueToFlag(guess.leagueId)}.png" alt="" style="width: 60%;">`,
+              `<img src="https://cdn.sportmonks.com/images/soccer/teams/${guess.teamId % 32}/${guess.teamId}.png" alt="" style="width: 60%;">`,
+              `${guess.position}`,
+              `${getAge(guess.birthdate)}`
+          ]
+          } 
     }
 
     function showContent(content, guess) {
@@ -149,9 +167,22 @@ let setupRows = function (game) {
         playersNode.prepend(stringToHTML(child))
     }
 
-    let getPlayer = function (playerId) {
-        return game.players.filter(item => item.id == playerId)[0]  
+
+    function resetInput(){
+        // YOUR CODE HERE
     }
+
+    let getPlayer = function (playerId) {
+            // YOUR CODE HERE   
+    }
+
+
+    function gameEnded(lastGuess){
+        // YOUR CODE HERE
+    }
+
+
+    resetInput();
 
     return /* addRow */ function (playerId) {
 
@@ -159,6 +190,25 @@ let setupRows = function (game) {
         console.log(guess)
 
         let content = setContent(guess)
+
+        game.guesses.push(playerId)
+        updateState(playerId)
+
+        resetInput();
+
+         if (gameEnded(playerId)) {
+            // updateStats(game.guesses.length);
+
+            if (playerId == game.solution.id) {
+                success();
+            }
+
+            if (game.guesses.length == 8) {
+                gameOver();
+            }
+         }
+
+
         showContent(content, guess)
     }
 }

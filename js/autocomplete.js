@@ -3,7 +3,7 @@ import {setupRows} from "./rows.js";
 export {autocomplete}
 
 function autocomplete(inp, game) {
-
+    console.log(game)
     let addRow = setupRows(game);
 
     let players = game.players;
@@ -13,7 +13,6 @@ function autocomplete(inp, game) {
     let currentFocus;
     /*execute a function when someone writes in the text field:*/
     inp.addEventListener("input", function (e) {
-        console.log(e.target.value.length)
         let a, b, i, val = this.value;
         /*close any already open lists of autocompleted values*/
         closeAllLists();
@@ -30,16 +29,15 @@ function autocomplete(inp, game) {
         /*for each item in the array...*/
         for (i = 0; i < players.length; i++) {
             /*check if the item starts with the same letters as the text field value:*/
-            console.log(e.target.value)
             if ( players[i].name.substr(0,e.target.value.length).toLowerCase() == e.target.value.toLowerCase()) {
-                
+
                 b = document.createElement("DIV");
                 b.classList.add('flex', 'items-start', 'gap-x-3', 'leading-tight', 'uppercase', 'text-sm');
                 b.innerHTML = `<img src="https://cdn.sportmonks.com/images/soccer/teams/${players[i].teamId % 32}/${players[i].teamId}.png"  width="28" height="28">`;
-                
+
                 /*make the matching letters bold:*/
                 b.innerHTML += `<div class='self-center'>
-                                    <span class='font-bold'> ${players[i].name.substr(0,e.target.value.length)}</span><span class>${players[i].name.substr(e.target.value.length,)}</span>
+                                    <span class='font-bold'>${players[i].name.substr(0,e.target.value.length)}</span><span class>${players[i].name.substr(e.target.value.length,)}</span>
                                     <input type='hidden' name='name' value='${players[i].name}'>
                                     <input type='hidden' name='id' value='${players[i].id}'>
                                 </div>`;
@@ -48,7 +46,7 @@ function autocomplete(inp, game) {
                 b.addEventListener("click", function (e) {
                     /*insert the value for the autocomplete text field:*/
                     inp.value = this.getElementsByTagName("input")[0].value;
-                    
+
                     /*close the list of autocompleted values,
                     (or any other open lists of autocompleted values:*/
                     closeAllLists();
