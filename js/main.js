@@ -1,7 +1,7 @@
 import { folder, leftArrow } from "./fragments.js";
 import { fetchJSON } from "./loaders.js";
 import {setupRows} from "./rows.js";
-
+import {autocomplete} from "./autocomplete.js"
 
 function differenceInDays(date1) {
     const date = new Date()
@@ -54,9 +54,10 @@ Promise.all([fetchJSON("fullplayers"), fetchJSON("solution")]).then(
       game.solution.id % 32
     }/${game.solution.id}.png`;
 
+    autocomplete(document.getElementById("myInput"), game)
 
       // YOUR CODE HERE
-    let addRow = setupRows( game );
+    /*let addRow = setupRows( game );
     // get myInput object...
     let myInput =  document.getElementById('myInput')
       // when the user types a number an press the Enter key:
@@ -66,7 +67,7 @@ Promise.all([fetchJSON("fullplayers"), fetchJSON("solution")]).then(
       }
         
     })
-        
+        */
     //  
 
 
