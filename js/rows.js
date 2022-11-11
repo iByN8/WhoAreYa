@@ -17,8 +17,14 @@ let setupRows = function (game) {
 
 
     function leagueToFlag(leagueId) {
-        console.log(competitions.filter(item => item.plan == "TIER_ONE"))
-        return competitions.filter(item => item.id == leagueId)[0]
+      const leagues = {
+        564:{id:"es1"},
+        8:{id:"en1"},
+        82:{id:"de1"},
+        384:{id:"it1"},
+        301:{id:"fr1"}
+      }
+      return leagues[leagueId].id
     }
 
 
