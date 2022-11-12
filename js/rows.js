@@ -2,6 +2,7 @@
 import {stringToHTML} from "./fragments.js";
 import { fetchJSON } from "./loaders.js";
 import {higher,lower} from "./fragments.js";
+import { initState } from "./stats.js";
 // .... setupRows .....
 export {setupRows}
 // .... initState ....
@@ -175,7 +176,7 @@ let setupRows = function (game) {
 
 
     function resetInput(){
-        // YOUR CODE HERE
+
     }
 
     let getPlayer = function (playerId) {
