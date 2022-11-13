@@ -9,6 +9,8 @@ function differenceInDays(date1) {
   let fechaFin = date.getTime();
   
   let dif = Math.abs(fechaFin - fechaInicio);
+  let emaitza = Math.round(dif/(1000*60*60*24));
+  
   if(emaitza>40){
     return (emaitza % 40);
   }else{
