@@ -43,46 +43,6 @@ let setupRows = function (game) {
     }
     
     let check = function (theKey, theValue) {
-      if( theKey == ('nationality')){
-        if (game.solution[theKey] == theValue){
-          return "correct";
-  
-        }else{
-          return "incorrect";
-  
-       }
-      }
-      
-      if( theKey == ('leagueId')){
-        if (game.solution[theKey] == theValue){
-          return "correct";
-  
-        }else{
-          return "incorrect";
-  
-       }
-      }
-
-      if( theKey == ('teamId')){
-        if (game.solution[theKey] == theValue){
-          return "correct";
-  
-        }else{
-          return "incorrect";
-  
-       }
-      }
-     
-      if( theKey == ('position')){
-        if (game.solution[theKey] == theValue){
-          return "correct";
-  
-        }else{
-          return "incorrect";
-  
-       }
-      }
-
       if(theKey == 'birthdate') {
         if (getAge(game.solution[theKey]) == getAge(theValue)){
             return "correct";
@@ -93,37 +53,15 @@ let setupRows = function (game) {
         }else{
             return "higher"
   
-        }}
-     
-        
-    /*
-        if( theKey == 'position'){
-    
+        }}else{
           if (game.solution[theKey] == theValue){
-            return true;
-    
-          }else if (game.solution[theKey] >= theValue){
-            return "lower";
+            return "correct";
     
           }else{
-            return "higher"
+            return "incorrect";
     
-          }
-    
-    
+         }
         }
-        
-        default:
-    
-          if (game.solution[theKey] == theValue){
-            return true;
-    
-          }else{
-            return false;
-    
-          }    
-          break;
-      }*/
 }
 
     function setContent(guess) {
