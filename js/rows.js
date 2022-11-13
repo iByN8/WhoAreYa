@@ -180,7 +180,7 @@ let setupRows = function (game) {
       let inp = document.getElementById("myInput")
 
       inp.placeholder = "Guess "+x+" of 8"
-
+      inp.value = ""
     }
 
     let getPlayer = function (playerId) {
@@ -199,14 +199,33 @@ let setupRows = function (game) {
 
     resetInput();
 
-    
+    function unblur(outcome) {
+      return new Promise( (resolve, reject) =>  {
+          setTimeout(() => {
+              document.getElementById("mistery").classList.remove("hue-rotate-180", "blur")
+              document.getElementById("combobox").remove()
+              let color, text
+              if (outcome=='success'){
+                  color =  "bg-blue-500"
+                  text = "Awesome"
+              } else {
+                  color =  "bg-rose-500"
+                  text = "The player was " + game.solution.name
+              }
+              document.getElementById("picbox").innerHTML += <div class="animate-pulse fixed z-20 top-14 left-1/2 transform -translate-x-1/2 max-w-sm shadow-lg rounded-lg pointer-events-auto ring-1 ring-black ring-opacity-5 overflow-hidden ${color} text-white"><div class="p-4"><p class="text-sm text-center font-medium">${text}</p></div></div>
+              resolve();
+          }, "2000")
+      })
+  }
 
     function success(){
 
       
+
     }
 
     function gameOver(){
+
 
 
     }
