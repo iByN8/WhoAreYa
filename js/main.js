@@ -9,9 +9,11 @@ function differenceInDays(date1) {
   let fechaFin = date.getTime();
   
   let dif = Math.abs(fechaFin - fechaInicio);
-
-  //return (dif/(1000*60*60*24));
-  return 16;
+  if(emaitza>40){
+    return (emaitza % 40);
+  }else{
+    return emaitza;
+  }
 }
 
 let difference_In_Days = differenceInDays(new Date("08-18-2022"));
