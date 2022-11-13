@@ -51,20 +51,49 @@ let setupRows = function (game) {
     }
     
     let check = function (theKey, theValue) {
-            /*case theKey === ("nationality" || "leagueId" || "teamId" || "position"):
+            if( theKey == ('nationality')){
               if (game.solution[theKey] == theValue){
-                return true;
+                return "correct";
         
               }else{
-                return false;
+                return "incorrect";
         
              }
-            break;
-            */
+            }
+            
+            if( theKey == ('leagueId')){
+              if (game.solution[theKey] == theValue){
+                return "correct";
+        
+              }else{
+                return "incorrect";
+        
+             }
+            }
+
+            if( theKey == ('teamId')){
+              if (game.solution[theKey] == theValue){
+                return "correct";
+        
+              }else{
+                return "incorrect";
+        
+             }
+            }
            
+            if( theKey == ('position')){
+              if (game.solution[theKey] == theValue){
+                return "correct";
+        
+              }else{
+                return "incorrect";
+        
+             }
+            }
+
             if(theKey == 'birthdate') {
               if (getAge(game.solution[theKey]) == getAge(theValue)){
-                  return true;
+                  return "correct";
         
               }else if (getAge(game.solution[theKey]) <= getAge(theValue)){
                   return "lower";
@@ -73,11 +102,10 @@ let setupRows = function (game) {
                   return "higher"
         
               }}
-                
-                  
+           
               
-          
-              /*case theKey == "number":
+          /*
+              if( theKey == 'position'){
           
                 if (game.solution[theKey] == theValue){
                   return true;
@@ -91,8 +119,8 @@ let setupRows = function (game) {
                 }
           
           
-              break;
-          
+              }
+              
               default:
           
                 if (game.solution[theKey] == theValue){
