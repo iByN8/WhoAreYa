@@ -64,10 +64,10 @@ let setupRows = function (game) {
                   return true;
         
               }else if (getAge(game.solution[theKey]) >= getAge(theValue)){
-                  return lower;
+                  return "lower";
         
               }else{
-                  return higher
+                  return "higher"
         
               }}
                 
@@ -176,6 +176,10 @@ let setupRows = function (game) {
 
 
     function resetInput(){
+      let x = game.guesses.length
+      let inp = document.getElementById("myInput")
+
+      inp.placeholder = "Guess "+x+" of 8"
 
     }
 
