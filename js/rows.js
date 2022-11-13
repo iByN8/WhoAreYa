@@ -59,7 +59,7 @@ let setupRows = function (game) {
               if (getAge(game.solution[theKey]) == getAge(theValue)){
                   return true;
         
-              }else if (getAge(game.solution[theKey]) >= getAge(theValue)){
+              }else if (getAge(game.solution[theKey]) <= getAge(theValue)){
                   return "lower";
         
               }else{
