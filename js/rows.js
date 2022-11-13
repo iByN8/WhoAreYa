@@ -13,7 +13,10 @@ const attribs = ['nationality', 'leagueId', 'teamId', 'position', 'birthdate']
 
 let setupRows = function (game) {
 
-
+  let x = game.guesses.length
+  let inp = document.getElementById("myInput")
+  inp.placeholder = "Guess "+(x+1)+" of 8"
+  
     let [state, updateState] = initState('WAYgameState', game.solution.id)
 
 
@@ -178,9 +181,10 @@ let setupRows = function (game) {
     function resetInput(){
       let x = game.guesses.length
       let inp = document.getElementById("myInput")
-
-      inp.placeholder = "Guess "+x+" of 8"
-      inp.value = ""
+      if(x<8){
+        inp.placeholder = "Guess "+(x+1)+" of 8"
+        inp.value = ""
+      }
     }
 
     let getPlayer = function (playerId) {
@@ -197,7 +201,7 @@ let setupRows = function (game) {
     }
 
 
-    resetInput();
+    //resetInput();
 
     function unblur(outcome) {
       return new Promise( (resolve, reject) =>  {
@@ -212,21 +216,21 @@ let setupRows = function (game) {
                   color =  "bg-rose-500"
                   text = "The player was " + game.solution.name
               }
-              document.getElementById("picbox").innerHTML += <div class="animate-pulse fixed z-20 top-14 left-1/2 transform -translate-x-1/2 max-w-sm shadow-lg rounded-lg pointer-events-auto ring-1 ring-black ring-opacity-5 overflow-hidden ${color} text-white"><div class="p-4"><p class="text-sm text-center font-medium">${text}</p></div></div>
-              resolve();
+             document.getElementById("picbox").innerHTML += `<div class="animate-pulse fixed z-20 top-14 left-1/2 transform -translate-x-1/2 max-w-sm shadow-lg rounded-lg pointer-events-auto ring-1 ring-black ring-opacity-5 overflow-hidden ${color} text-white"><div class="p-4"><p class="text-sm text-center font-medium">${text}</p></div></div>`
+             resolve();
           }, "2000")
       })
   }
 
     function success(){
 
-      
+      unblur('success')
 
     }
 
     function gameOver(){
 
-
+      unblur('gameOver')
 
     }
 
