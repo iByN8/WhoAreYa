@@ -1,7 +1,7 @@
 // .... stringToHTML ....
 import {stringToHTML} from "./fragments.js";
 import { fetchJSON } from "./loaders.js";
-import {higher,lower} from "./fragments.js";
+import {higher,lower,stats} from "./fragments.js";
 import { initState } from "./stats.js";
 // .... setupRows .....
 export {setupRows}
@@ -195,15 +195,14 @@ let setupRows = function (game) {
     //resetInput();
 
     function success(){
-
         unblur('success')
-  
+        showStats();
       }
   
       function gameOver(){
   
         unblur('gameOver')
-  
+        showStats();
       }
 
     return /* addRow */ function (playerId) {
@@ -219,7 +218,7 @@ let setupRows = function (game) {
         resetInput();
 
          if (gameEnded(playerId)) {
-            // updateStats(game.guesses.length);
+            updateStats(game.guesses.length);
 
             if (playerId == game.solution.id) {
                 success();
