@@ -1,6 +1,8 @@
-export {initState}
+export {updateStats, getStats, initState}
+
 
 let initState = function(what, solutionId) { 
+
     let emaitza = [];
     if(localStorage.getItem(what) !== undefined){
         emaitza[0] = localStorage.getItem(what);
@@ -15,5 +17,20 @@ let initState = function(what, solutionId) {
     return emaitza;
 }
 
+function successRate (e){
+    // YOUR CODE HERE
+}
 
+let getStats = function(what) {
+    // YOUR CODE HERE
+    //
+};
+
+
+function updateStats(t){
+ // YOUR CODE HERE
+};
+
+
+let gamestats = getStats('gameStats');
 

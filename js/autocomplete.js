@@ -3,7 +3,7 @@ import {setupRows} from "./rows.js";
 export {autocomplete}
 
 function autocomplete(inp, game) {
-    console.log(game)
+
     let addRow = setupRows(game);
 
     let players = game.players;
@@ -29,7 +29,7 @@ function autocomplete(inp, game) {
         /*for each item in the array...*/
         for (i = 0; i < players.length; i++) {
             /*check if the item starts with the same letters as the text field value:*/
-            if ( players[i].name.substr(0,e.target.value.length).toLowerCase() == e.target.value.toLowerCase()) {
+            if ( players[i].name.substr(0,e.target.value.length).toLowerCase() == e.target.value.toLowerCase() ) {
 
                 b = document.createElement("DIV");
                 b.classList.add('flex', 'items-start', 'gap-x-3', 'leading-tight', 'uppercase', 'text-sm');
@@ -37,7 +37,7 @@ function autocomplete(inp, game) {
 
                 /*make the matching letters bold:*/
                 b.innerHTML += `<div class='self-center'>
-                                    <span class='font-bold'>${players[i].name.substr(0,e.target.value.length)}</span><span class>${players[i].name.substr(e.target.value.length,)}</span>
+                                    <span class='font-bold'> ${players[i].name.substr(0,e.target.value.length)}</span><span class>${players[i].name.substr(e.target.value.length,)}</span>
                                     <input type='hidden' name='name' value='${players[i].name}'>
                                     <input type='hidden' name='id' value='${players[i].id}'>
                                 </div>`;

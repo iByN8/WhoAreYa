@@ -7,28 +7,34 @@ import { initState } from "./stats.js";
 export {setupRows}
 // .... initState ....
 //
+// From: https://stackoverflow.com/a/7254108/243532
+function pad(a, b){
+    return(1e15 + a + '').slice(-b);
+}
+
+
 const delay = 350;
 const attribs = ['nationality', 'leagueId', 'teamId', 'position', 'birthdate']
 
 
 let setupRows = function (game) {
 
-  let x = game.guesses.length
-  let inp = document.getElementById("myInput")
-  inp.placeholder = "Guess "+(x+1)+" of 8"
-  
+    let x = game.guesses.length
+    let inp = document.getElementById("myInput")
+    inp.placeholder = "Guess "+(x+1)+" of 8"
+
     let [state, updateState] = initState('WAYgameState', game.solution.id)
 
 
     function leagueToFlag(leagueId) {
-      const leagues = {
-        564:{id:"es1"},
-        8:{id:"en1"},
-        82:{id:"de1"},
-        384:{id:"it1"},
-        301:{id:"fr1"}
-      }
-      return leagues[leagueId].id
+        const leagues = {
+            564:{id:"es1"},
+            8:{id:"en1"},
+            82:{id:"de1"},
+            384:{id:"it1"},
+            301:{id:"fr1"}
+          }
+          return leagues[leagueId].id
     }
 
 
@@ -51,25 +57,25 @@ let setupRows = function (game) {
     }
     
     let check = function (theKey, theValue) {
-            if(theKey == 'birthdate') {
-              if (getAge(game.solution[theKey]) == getAge(theValue)){
-                  return "correct";
-        
-              }else if (getAge(game.solution[theKey]) <= getAge(theValue)){
-                  return "lower";
+        if(theKey == 'birthdate') {
+            if (getAge(game.solution[theKey]) == getAge(theValue)){
+                return "correct";
+      
+            }else if (getAge(game.solution[theKey]) <= getAge(theValue)){
+                return "lower";
+      
+            }else{
+                return "higher"
+      
+            }}else{
+              if (game.solution[theKey] == theValue){
+                return "correct";
         
               }else{
-                  return "higher"
+                return "incorrect";
         
-              }}else{
-                if (game.solution[theKey] == theValue){
-                  return "correct";
-          
-                }else{
-                  return "incorrect";
-          
-               }
-              }
+             }
+            }
     }
 
         function unblur(outcome) {
@@ -89,6 +95,25 @@ let setupRows = function (game) {
                 resolve();
             }, "2000")
         })
+    }
+
+
+    function showStats(timeout) {
+        return new Promise( (resolve, reject) =>  {
+            setTimeout(() => {
+                document.body.appendChild(stringToHTML(headless(stats())));
+                document.getElementById("showHide").onclick = toggle;
+                bindClose();
+                resolve();
+            }, timeout)
+        })
+    }
+
+    function bindClose() {
+        document.getElementById("closedialog").onclick = function () {
+            document.body.removeChild(document.body.lastChild)
+            document.getElementById("mistery").classList.remove("hue-rotate-180", "blur")
+        }
     }
 
 
@@ -145,60 +170,41 @@ let setupRows = function (game) {
 
 
     function resetInput(){
-      let x = game.guesses.length
-      let inp = document.getElementById("myInput")
-      if(x<8){
-        inp.placeholder = "Guess "+(x+1)+" of 8"
-        inp.value = ""
+        let x = game.guesses.length
+        let inp = document.getElementById("myInput")
+        if(x<8){
+            inp.placeholder = "Guess "+(x+1)+" of 8"
+            inp.value = ""
       }
     }
 
     let getPlayer = function (playerId) {
-      return game.players.filter(item => item.id == playerId)[0]  
+        return game.players.filter(item => item.id == playerId)[0]    
     }
 
 
     function gameEnded(lastGuess){
         if(game.solution.id == lastGuess || game.guesses.length == 8){
-          return true;
-        }else{
-          return false;  
-        }
+            return true;
+          }else{
+            return false;  
+          }
     }
 
 
     //resetInput();
 
-    function unblur(outcome) {
-      return new Promise( (resolve, reject) =>  {
-          setTimeout(() => {
-              document.getElementById("mistery").classList.remove("hue-rotate-180", "blur")
-              document.getElementById("combobox").remove()
-              let color, text
-              if (outcome=='success'){
-                  color =  "bg-blue-500"
-                  text = "Awesome"
-              } else {
-                  color =  "bg-rose-500"
-                  text = "The player was " + game.solution.name
-              }
-             document.getElementById("picbox").innerHTML += `<div class="animate-pulse fixed z-20 top-14 left-1/2 transform -translate-x-1/2 max-w-sm shadow-lg rounded-lg pointer-events-auto ring-1 ring-black ring-opacity-5 overflow-hidden ${color} text-white"><div class="p-4"><p class="text-sm text-center font-medium">${text}</p></div></div>`
-             resolve();
-          }, "2000")
-      })
-  }
-
     function success(){
 
-      unblur('success')
-
-    }
-
-    function gameOver(){
-
-      unblur('gameOver')
-
-    }
+        unblur('success')
+  
+      }
+  
+      function gameOver(){
+  
+        unblur('gameOver')
+  
+      }
 
     return /* addRow */ function (playerId) {
 
@@ -222,6 +228,11 @@ let setupRows = function (game) {
             if (game.guesses.length == 8) {
                 gameOver();
             }
+
+
+                  let interval = /* YOUR CODE HERE */ 2
+
+
          }
 
 

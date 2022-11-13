@@ -31,6 +31,7 @@ let game = {
 };
 
 function getSolution(players, solutionArray, difference_In_Days) {
+ 
   let solPlayer = solutionArray[difference_In_Days-1];
   console.log(solPlayer)
   let player = players.filter(item => item.id == solPlayer.id);
@@ -54,9 +55,8 @@ Promise.all([fetchJSON("fullplayers"), fetchJSON("solution")]).then(
       game.solution.id % 32
     }/${game.solution.id}.png`;
 
-    autocomplete(document.getElementById("myInput"), game)
 
-    /*
+     /*
     let addRow = setupRows( game );
     // get myInput object...
     let myInput =  document.getElementById('myInput')
@@ -66,7 +66,7 @@ Promise.all([fetchJSON("fullplayers"), fetchJSON("solution")]).then(
           addRow(myInput.value);
         }
       })
-    */
+    */ 
 
 
   }
