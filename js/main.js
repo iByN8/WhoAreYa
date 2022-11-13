@@ -11,7 +11,7 @@ function differenceInDays(date1) {
 
     let emaitza = Math.round(dif/(1000*60*60*24));
   
-    if(emaitza>39){
+    if(emaitza>38){
       return (emaitza % 39);
     }else{
       return emaitza;
