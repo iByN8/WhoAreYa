@@ -63,7 +63,7 @@ let setupRows = function (game) {
               if (getAge(game.solution[theKey]) == getAge(theValue)){
                   return true;
         
-              }else if (getAge(game.solution[theKey]) >= getAge(theValue)){
+              }else if (getAge(game.solution[theKey]) <= getAge(theValue)){
                   return "lower";
         
               }else{
@@ -184,7 +184,7 @@ let setupRows = function (game) {
     }
 
     let getPlayer = function (playerId) {
-            // YOUR CODE HERE   
+      return game.players.filter(item => item.id == playerId)[0]  
     }
 
 
