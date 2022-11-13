@@ -1,10 +1,12 @@
 // .... stringToHTML ....
-import {stringToHTML} from "./fragments.js";
+import {stringToHTML, headless, toggle} from "./fragments.js";
 import { fetchJSON } from "./loaders.js";
 import {higher,lower,stats} from "./fragments.js";
 import { initState } from "./stats.js";
+import {updateStats, getStats} from "./stats.js"
 // .... setupRows .....
 export {setupRows}
+//export{interval}
 // .... initState ....
 //
 // From: https://stackoverflow.com/a/7254108/243532
@@ -193,15 +195,24 @@ let setupRows = function (game) {
 
 
     //resetInput();
+    function sleep(milliseconds) {
+        const date = Date.now();
+        let currentDate = null;
+        do {
+          currentDate = Date.now();
+        } while (currentDate - date < milliseconds);
+      }
 
     function success(){
         unblur('success')
+        //sleep(2000);
         showStats();
       }
   
       function gameOver(){
   
         unblur('gameOver')
+        //sleep(2000);
         showStats();
       }
 
@@ -216,8 +227,11 @@ let setupRows = function (game) {
         updateState(playerId)
 
         resetInput();
+        
+        
 
          if (gameEnded(playerId)) {
+            
             updateStats(game.guesses.length);
 
             if (playerId == game.solution.id) {
@@ -229,12 +243,21 @@ let setupRows = function (game) {
             }
 
 
-                  let interval = /* YOUR CODE HERE */ 2
+            let interval = setInterval(function() {
+                let now = new Date();
+               
+                let h = 24-now.getHours();
+                let m = 60-now.getMinutes();
+                let s = 60-now.getSeconds();
+                document.getElementById("newFoot").innerHTML = "New Footballer: " +  h+ ":"+m+":"+s;
+        }, 1000)
+        
+            
 
 
          }
 
-
-        showContent(content, guess)
+         showContent(content, guess)
+        
     }
 }

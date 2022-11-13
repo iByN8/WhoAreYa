@@ -5,7 +5,7 @@ export {updateStats, getStats, initState}
 let initState = function(what, solutionId) { 
 
     let emaitza = [];
-    if(localStorage.getItem(what) !== undefined){
+    if(localStorage.getItem(what) != null){
         emaitza[0] = localStorage.getItem(what);
     }else{
         localStorage.setItem(what, solutionId);
@@ -23,25 +23,29 @@ function successRate (e){
 }
 
 let getStats = function(what) {
-    if(JSON.parse(localStorage.getItem(what)) !== undefined){
+    if(JSON.parse(localStorage.getItem(what)) != null){
         return JSON.parse(localStorage.getItem(what));
     }else{
         let estadisticas = {
-            "winDistribution": [0,0,0,0,0,0,0,0,0],
-            "gamesFailed": 0,
-            "currentStreak": 0,
-            "bestStreak": 0,
-            "totalGames": 0,
-            "successRate": 0
+            winDistribution: [0,0,0,0,0,0,0,0,0],
+            gamesFailed: 0,
+            currentStreak: 0,
+            bestStreak: 0,
+            totalGames: 0,
+            successRate: 0
             }
         localStorage.setItem(what, JSON.stringify(estadisticas));
+        console.log(estadisticas)
         return estadisticas;
     }
 };
 
 
 function updateStats(t){
-  gamestats.totalGames += 1;
+  //let gamestats = localStorage.getItem('gameStats');
+  let gamestats = getStats('gameStats');
+  //console.log(gamestats)
+  gamestats['totalGames'] += 1;
   
   if(t<8){
     gamestats.currentStreak +=1;
@@ -51,14 +55,14 @@ function updateStats(t){
     gamestats.currentStreak = 0;
   }
 
-  if(gamesStats.currentStreak>gamesStats.bestStreak){
+  if(gamestats.currentStreak>gamestats.bestStreak){
     gamestats.bestStreak = gamestats.currentStreak;
   }
-  gamestats.successRate = (gamestats.totalGames-gamesFailed)/gamestats.totalGames*100;
+  gamestats.successRate = Math.round((gamestats.totalGames-gamestats.gamesFailed)/gamestats.totalGames*100);
 
   localStorage.setItem('gameStats', JSON.stringify(gamestats));
 }
 
 
-let gamestats = getStats('gameStats');
+
 
