@@ -5,10 +5,14 @@ let initState = function(what, solutionId) {
     if(localStorage.getItem(what) !== undefined){
         emaitza[0] = localStorage.getItem(what);
     }else{
-        localStorage.setItem('WAYgameState', what);
+        localStorage.setItem(what, solutionId);
         emaitza[0] = localStorage.getItem(what);
     }
     //función anónima
+    emaitza[1] = function(playerId){
+        localStorage.setItem('WAYgameState', playerId)
+    }
+    return emaitza;
 }
 
 
