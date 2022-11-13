@@ -69,12 +69,17 @@ let initState = function(what, solutionId) {
 }
 
 function successRate (e){
-    // YOUR CODE HERE
+    return e['successRate'][0];
 }
 
 let getStats = function(what) {
-    // YOUR CODE HERE
-    //
+    if(JSON.parse(localStorage.getItem(what)) !== undefined){
+        return JSON.parse(localStorage.getItem(what));
+    }else{
+        let json = "./json/stats.json"
+        localStorage.setItem(what, JSON.stringify(json));
+        return JSON.parse(localStorage.getItem(what));
+    }
 };
 
 
