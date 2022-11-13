@@ -46,63 +46,88 @@ let setupRows = function (game) {
     }
     
     let check = function (theKey, theValue) {
-      console.log(theKey)
-       
-            /*case theKey === ("nationality" || "leagueId" || "teamId" || "position"):
-              if (game.solution[theKey] == theValue){
-                return true;
-        
-              }else{
-                return false;
-        
-             }
-            break;
-            */
-           
-            if(theKey == 'birthdate') {
-              console.log("a entradooooooooooooooooooo")
-            if (getAge(game.solution[theKey]) == getAge(theValue)){
-                return true;
+      if( theKey == ('nationality')){
+        if (game.solution[theKey] == theValue){
+          return "correct";
+  
+        }else{
+          return "incorrect";
+  
+       }
+      }
       
-            }else if (getAge(game.solution[theKey]) <= getAge(theValue)){
-                return "lower";
-      
-            }else{
-                return "higher"
-      
-            }}
-              
-                
-            
+      if( theKey == ('leagueId')){
+        if (game.solution[theKey] == theValue){
+          return "correct";
+  
+        }else{
+          return "incorrect";
+  
+       }
+      }
+
+      if( theKey == ('teamId')){
+        if (game.solution[theKey] == theValue){
+          return "correct";
+  
+        }else{
+          return "incorrect";
+  
+       }
+      }
+     
+      if( theKey == ('position')){
+        if (game.solution[theKey] == theValue){
+          return "correct";
+  
+        }else{
+          return "incorrect";
+  
+       }
+      }
+
+      if(theKey == 'birthdate') {
+        if (getAge(game.solution[theKey]) == getAge(theValue)){
+            return "correct";
+  
+        }else if (getAge(game.solution[theKey]) <= getAge(theValue)){
+            return "lower";
+  
+        }else{
+            return "higher"
+  
+        }}
+     
         
-            /*case theKey == "number":
+    /*
+        if( theKey == 'position'){
+    
+          if (game.solution[theKey] == theValue){
+            return true;
+    
+          }else if (game.solution[theKey] >= theValue){
+            return "lower";
+    
+          }else{
+            return "higher"
+    
+          }
+    
+    
+        }
         
-              if (game.solution[theKey] == theValue){
-                return true;
-        
-              }else if (game.solution[theKey] >= theValue){
-                return "lower";
-        
-              }else{
-                return "higher"
-        
-              }
-        
-        
-            break;
-        
-            default:
-        
-              if (game.solution[theKey] == theValue){
-                return true;
-        
-              }else{
-                return false;
-        
-              }    
-              break;
-          }*/
-    }
+        default:
+    
+          if (game.solution[theKey] == theValue){
+            return true;
+    
+          }else{
+            return false;
+    
+          }    
+          break;
+      }*/
+}
 
     function setContent(guess) {
       if(check("birthdate",guess.birthdate)=="lower"){
