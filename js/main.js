@@ -55,7 +55,7 @@ Promise.all([fetchJSON("fullplayers"), fetchJSON("solution")]).then(
       game.solution.id % 32
     }/${game.solution.id}.png`;
 
-
+    autocomplete(document.getElementById("myInput"), game)
      /*
     let addRow = setupRows( game );
     // get myInput object...
