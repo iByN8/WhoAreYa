@@ -19,6 +19,7 @@ const delay = 350;
 const attribs = ['nationality', 'leagueId', 'teamId', 'position', 'birthdate']
 
 
+
 let setupRows = function (game) {
 
     let x = game.guesses.length
@@ -242,13 +243,18 @@ let setupRows = function (game) {
                 gameOver();
             }
 
+            function pad(num, size) {
+                num = num.toString();
+                while (num.length < size) num = "0" + num;
+                return num;
+            }
 
             let interval = setInterval(function() {
                 let now = new Date();
                
-                let h = 24-now.getHours();
-                let m = 60-now.getMinutes();
-                let s = 60-now.getSeconds();
+                let h = pad(24-now.getHours()-1,2);
+                let m = pad(60-now.getMinutes()-1,2);
+                let s = pad(60-now.getSeconds()-1,2);
                 document.getElementById("newFoot").innerHTML = "New Footballer: " +  h+ ":"+m+":"+s;
         }, 1000)
         
