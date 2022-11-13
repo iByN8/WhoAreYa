@@ -199,6 +199,18 @@ let setupRows = function (game) {
 
     resetInput();
 
+    
+
+    function success(){
+
+      
+    }
+
+    function gameOver(){
+
+
+    }
+
     return /* addRow */ function (playerId) {
 
         let guess = getPlayer(playerId)
