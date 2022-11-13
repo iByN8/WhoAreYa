@@ -189,7 +189,11 @@ let setupRows = function (game) {
 
 
     function gameEnded(lastGuess){
-        // YOUR CODE HERE
+        if(game.solution.id == lastGuess || game.guesses.length == 8){
+          return true;
+        }else{
+          return false;  
+        }
     }
 
 
