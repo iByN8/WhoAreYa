@@ -49,7 +49,7 @@ function updateStats(t){
   
   if(t<8){
     gamestats.currentStreak +=1;
-    gamestats.winDistribution[t-1] += 1;
+    gamestats.winDistribution[t] += 1;
   }else{
     gamestats.gamesFailed += 1;
     gamestats.currentStreak = 0;
