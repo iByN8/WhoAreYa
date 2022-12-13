@@ -10,6 +10,8 @@
   "license": "ISC",
   "type": "module",
   "dependencies": {
-    "node-fetch": "^3.3.0"
+    "jq": "^1.7.2",
+    "node-fetch": "^3.3.0",
+    "node-jq": "^2.3.4"
   }
 }
