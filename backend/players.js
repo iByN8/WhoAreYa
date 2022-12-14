@@ -3,6 +3,8 @@ import fetch from 'node-fetch'
 
 const writepath = 'json/players/'
 
+
+
 fs.mkdirSync(writepath, {recursive:true})
 
 
