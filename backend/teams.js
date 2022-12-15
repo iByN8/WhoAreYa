@@ -10,7 +10,7 @@ try {
     const data = fs.readFileSync('teamIDs.txt', 'utf8').split("\n")
     data.forEach( (elem, idx) => {
            elem=elem.replace(/[\u0000-\u001F\u007F-\u009F]/g, "")
-           const url = `https://cdn.sportmonks.com/images/soccer/teams/${elem%32}/${elem}.png`
+           const url = `http://iheras006.eus/json/teams/${elem}.png`
            
             fetch(url).then(res => {
                 // check status

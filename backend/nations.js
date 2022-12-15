@@ -10,7 +10,7 @@ try {
     const data = fs.readFileSync('nationalities.txt', 'utf8').split("\n")
     data.forEach( (elem, idx) => {
            elem=elem.replace(/[\u0000-\u001F\u007F-\u009F]/g, "")
-           const url = `https://playfootball.games/who-are-ya/media/nations/${elem}.svg`
+           const url = `http://iheras006.eus/json/nationalities/${elem}.svg`
             fetch(url).then(res => {
                 // check status
                 if (res.status === 200) {

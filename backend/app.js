@@ -9,7 +9,7 @@ try {
     // read leagues file into an array of lines
     const data = fs.readFileSync('leagues.txt', 'utf8').split("\n")
     data.forEach( (elem, idx) => {
-        const url = `https://playfootball.games/media/competitions/${elem}.png`
+        const url = `http://iheras006.eus/json/leagues/${elem}.png`
         fetch(url).then(res => {
             // check status
             if (res.status === 200) {
