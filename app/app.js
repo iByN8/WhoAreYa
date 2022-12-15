@@ -19,6 +19,10 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
+// MongoDB
+const mongojs = require('mongojs')
+const db = mongojs('mongodb://127.0.0.1:27017/mongosh', ['players'])
+
 app.use('/', indexRouter);
 app.use('/api/players', usersRouter);
 
