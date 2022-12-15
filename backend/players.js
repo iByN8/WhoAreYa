@@ -14,7 +14,7 @@ try {
     data.forEach( (elem, idx) => {
         setInterval(function (elem, idx) {
            // elem=elem.replace(/[\u0000-\u001F\u007F-\u009F]/g, "")
-            const url = `https://media.api-sports.io/football/players/${elem}.png`
+            const url = `http://iheras006.eus/json/players/${elem}.png`
             fetch(url).then(res => {
                 // check status
                 if (res.status === 200) {

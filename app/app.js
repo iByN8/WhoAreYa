@@ -6,6 +6,7 @@ var logger = require('morgan');
 
 var indexRouter = require('./routes/index');
 const usersRouter = require('./routes/players');
+var formularioRouter = require('./routes/formulario');
 
 var app = express();
 
@@ -25,6 +26,7 @@ const db = mongojs('mongodb://127.0.0.1:27017/whoareya', ['players'])
 
 app.use('/', indexRouter);
 app.use('/api/players', usersRouter);
+app.use('/formulario', formularioRouter)
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
