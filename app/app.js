@@ -4,9 +4,10 @@ var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 
-var indexRouter = require('./routes/index');
+const indexRouter = require('./routes/index');
 const usersRouter = require('./routes/players');
-var formularioRouter = require('./routes/formulario');
+const formularioRouter = require('./routes/formulario');
+
 
 var app = express();
 
@@ -27,6 +28,11 @@ const db = mongojs('mongodb://127.0.0.1:27017/whoareya', ['players'])
 app.use('/', indexRouter);
 app.use('/api/players', usersRouter);
 app.use('/formulario', formularioRouter)
+app.use('/api/v1/players/:id', readRouter)
+app.use('/api/v1/players/remove/:id', removeRouter)
+app.use('/api/v1/players/add', addRouter)
+app.use('/api/V1/players/edit', updateRouter)
+
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
