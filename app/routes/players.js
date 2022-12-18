@@ -12,8 +12,20 @@ router.get('/', function(req, res, next) {
   res.send('respond with a resource');
 });
 
-router.get('/', function(req, res, next) {
-  res.send('respond with a resource');
+router.post('/',(req,res) => {
+    let found= false;
+    db.users.find({"username": req.body.username, "password": req.body.password},(err, docs) => {
+        if (err) {
+            res.render('index', { error: 'Las credenciales no son correctas' });
+        } else if (docs.length == 0) {
+            res.render('index', {error: 'Las credenciales no son correctas'});
+            }
+            else {
+                req.session.userid=req.body.username;
+                console.log(req.session)
+                res.redirect('/protected');
+            }
+    })
 });
 
 
