@@ -26,12 +26,12 @@ const mongojs = require('mongojs')
 const db = mongojs('mongodb://127.0.0.1:27017/whoareya', ['players'])
 
 app.use('/', indexRouter);
-app.use('/api/players', usersRouter);
+app.use('/api/v1/players', usersRouter);
 app.use('/formulario', formularioRouter)
-app.use('/api/v1/players/:id', usersRouter)
+/*app.use('/api/v1/players/:id', usersRouter)
 app.use('/api/v1/players/remove/:id', usersRouter)
 app.use('/api/v1/players/add', usersRouter)
-app.use('/api/V1/players/edit', usersRouter)
+app.use('/api/V1/players/edit', usersRouter)*/
 
 
 // catch 404 and forward to error handler
