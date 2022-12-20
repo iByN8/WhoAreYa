@@ -7,7 +7,7 @@ const mongojs = require('mongojs')
 const db = mongojs('mongodb://127.0.0.1:27017/footballdata', ['players'])
 
 router.get('/remove/:id',(req,res,next) => {
-    db.players.remove({_id: mongojs.ObjectId(req.params.id)},(err, docs) => {
+    db.players.remove({id: req.params.id},(err, docs) => {
         if (err) {
             res.render('index', { error: 'No existe ningun jugador con ese ID' });
         } else{
@@ -20,9 +20,22 @@ router.get('/add',(req,res,next) => {
     res.render('formulario');
 });
 
+router.get('/edit/:id',(req,res,next) => {
+    db.players.findOne({id: parseInt(req.params.id)},(err, docs) => {
+        if (err) {
+            res.send(err);
+        } else {
+           res.render('edit', {element: docs})
+            
+        }
+    })
+});
+
+
+
 
 router.get('/:id',(req,res,next) => {
-    db.players.find({id: parseInt(req.params.id)},(err, docs) => {
+    db.players.findOne({id: parseInt(req.params.id)},(err, docs) => {
         if (err) {
             res.render('index', { error: 'No existe ningun jugador con ese ID' });
         } else{

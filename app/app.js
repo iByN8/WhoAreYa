@@ -7,7 +7,7 @@ var logger = require('morgan');
 const indexRouter = require('./routes/index');
 const usersRouter = require('./routes/players');
 const formularioRouter = require('./routes/formulario');
-
+const editRouter = require('./routes/edit')
 
 var app = express();
 
@@ -28,6 +28,7 @@ const db = mongojs('mongodb://127.0.0.1:27017/footballdata', ['players'])
 app.use('/', indexRouter);
 app.use('/api/v1/players', usersRouter);
 app.use('/formulario', formularioRouter)
+app.use('/edit/:id',editRouter)
 /*app.use('/api/v1/players/:id', usersRouter)
 app.use('/api/v1/players/remove/:id', usersRouter)
 app.use('/api/v1/players/add', usersRouter)
