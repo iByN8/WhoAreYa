@@ -22,7 +22,7 @@ router.get('/add',(req,res,next) => {
 
 
 router.get('/:id',(req,res,next) => {
-    db.players.find({id: req.params.id},(err, docs) => {
+    db.players.find({id: parseInt(req.params.id)},(err, docs) => {
         if (err) {
             res.render('index', { error: 'No existe ningun jugador con ese ID' });
         } else{
