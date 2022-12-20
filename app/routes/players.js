@@ -21,8 +21,8 @@ router.get('/add',(req,res,next) => {
 });
 
 
-router.get('/',(req,res,next) => {
-    db.players.find({_id: mongojs.ObjectId(id)},(err, docs) => {
+router.get('/:id',(req,res,next) => {
+    db.players.find({id: req.params.id},(err, docs) => {
         if (err) {
             res.render('index', { error: 'No existe ningun jugador con ese ID' });
         } else{
