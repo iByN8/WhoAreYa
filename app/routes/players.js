@@ -4,7 +4,7 @@ var router = express.Router();
 
 // MongoDB
 const mongojs = require('mongojs')
-const db = mongojs('mongodb://127.0.0.1:27017/whoareya', ['players'])
+const db = mongojs('mongodb://127.0.0.1:27017/footballdata', ['players'])
 
 router.get('/remove/:id',(req,res,next) => {
     db.players.remove({_id: mongojs.ObjectId(req.params.id)},(err, docs) => {

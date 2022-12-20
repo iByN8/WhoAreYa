@@ -23,7 +23,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 // MongoDB
 const mongojs = require('mongojs')
-const db = mongojs('mongodb://127.0.0.1:27017/whoareya', ['players'])
+const db = mongojs('mongodb://127.0.0.1:27017/footballdata', ['players'])
 
 app.use('/', indexRouter);
 app.use('/api/v1/players', usersRouter);
