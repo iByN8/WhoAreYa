@@ -23,10 +23,22 @@ router.post('/login', function(req, res, next) {
             else if (docs.rol == "Admin") {
                 res.redirect('/crud')
             }else{
-                res.redirect('/')
+                res.redirect('/protected')
             }
     })
 
+  });
+
+  router.get('/logout',(req,res) => {
+    req.session.destroy();
+    res.redirect('/')
+  });
+  
+  router.get('/protected',(req,res) => {
+    if(req.session.userid){
+      res.send("Welcome User <a href=\'/logout'>click to logout</a>");
+    }else
+      res.render('index', { error: '' });
   });
 
   router.post('/register', function(req, res, next) { 
