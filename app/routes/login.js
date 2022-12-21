@@ -21,7 +21,7 @@ router.post('/', function(req, res, next) {
             res.render('login', {error: 'Las credenciales no son correctas'});
             }
             else if (docs.rol == "Admin") {
-                req.session.email = docs.email
+                req.session.email = req.body.email
                 req.session.rol = docs.rol
                 res.redirect('/crud')
 

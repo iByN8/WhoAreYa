@@ -13,11 +13,15 @@ const crudRouter = require('./routes/crud')
 const registerRouter = require('./routes/register')
 const loginRouter = require('./routes/login')
 
+
+
 var app = express();
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
+
+
 
 app.use(logger('dev'));
 app.use(express.json());
@@ -28,6 +32,12 @@ app.use(express.static(path.join(__dirname, 'public')));
 // MongoDB
 const mongojs = require('mongojs')
 const db = mongojs('mongodb://127.0.0.1:27017/footballdata', ['players'])
+
+const sess = {
+  secret: 'ausazko hitz multzoa',
+  cookie: {}
+}
+app.use(session(sess))
 
 app.use('/login', loginRouter)
 app.use('/api/v1/players', usersRouter)
@@ -40,11 +50,7 @@ app.use('/api/v1/players/remove/:id', usersRouter)
 app.use('/api/v1/players/add', usersRouter)
 app.use('/api/V1/players/edit', usersRouter)*/
 
-const sess = {
-  secret: 'ausazko hitz multzoa',
-  cookie: {}
-}
-app.use(session(sess))
+
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

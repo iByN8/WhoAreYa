@@ -6,7 +6,7 @@ const db = mongojs('mongodb://127.0.0.1:27017/footballdata', ['players'])
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
-  if (req.session.email!=null && req.session.rol=='Admin') {
+  if (req.session.email!=null && req.session.rol=="Admin") {
     db.players.find((err, docs) => {
         if (err) {
             res.send(err);
