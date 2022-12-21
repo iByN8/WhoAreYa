@@ -10,7 +10,6 @@ const formularioRouter = require('./routes/formulario');
 const editRouter = require('./routes/edit')
 const crudRouter = require('./routes/crud')
 const loginRouter = require('./routes/login')
-const registerRouter = require('./routes/register')
 
 var app = express();
 
@@ -33,7 +32,6 @@ app.use('/api/v1/players', usersRouter);
 app.use('/formulario', formularioRouter)
 app.use('/edit',editRouter)
 app.use('/crud', crudRouter)
-app.use('/register', registerRouter)
 /*app.use('/api/v1/players/:id', usersRouter)
 app.use('/api/v1/players/remove/:id', usersRouter)
 app.use('/api/v1/players/add', usersRouter)

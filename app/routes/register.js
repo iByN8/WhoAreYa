@@ -15,13 +15,13 @@ router.post('/register', function(req, res, next){
     if (err) {
         res.send(err)
     } else {
-        res.redirect('/login')
+        res.redirect('/')
     }
 })    
 });
 
 router.post('/login', function(req, res, next) { 
-  res.redirect('/login')
+  res.redirect('/')
 });
 
 router.get('/logout',(req,res) => {
