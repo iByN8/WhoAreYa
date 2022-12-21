@@ -8,6 +8,7 @@ const indexRouter = require('./routes/index');
 const usersRouter = require('./routes/players');
 const formularioRouter = require('./routes/formulario');
 const editRouter = require('./routes/edit')
+const crudRouter = require('./routes/crud')
 
 var app = express();
 
@@ -29,6 +30,7 @@ app.use('/', indexRouter);
 app.use('/api/v1/players', usersRouter);
 app.use('/formulario', formularioRouter)
 app.use('/edit',editRouter)
+app.use('/crud', crudRouter)
 /*app.use('/api/v1/players/:id', usersRouter)
 app.use('/api/v1/players/remove/:id', usersRouter)
 app.use('/api/v1/players/add', usersRouter)

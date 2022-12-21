@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+    <body>
+        <div id="main">
+            <table class="table table-striped">
+                <thead class="thead-dark">
+                <tr>
+                    <th>ID</th>
+                    <th>Name</th>
+                    <th>Birthdate</th>
+                    <th>Nationality</th>
+                    <th>TeamId</th>
+                    <th>Position</th>
+                    <th>Number</th>
+                    <th>LeagueId</th>
+                </tr>
+                </thead>
+                <% elements.forEach( element => { %>
+                    <tr>
+                        <td> <%= element.id %></td>
+                        <td> <%= element.name %></td>
+                        <td> <%= element.birthdate %></td>
+                        <td> <%= element.nationality %></td>
+                        <td> <%= element.teamId %></td>
+                        <td> <%= element.position %></td>
+                        <td> <%= element.number %></td>
+                        <td> <%= element.leagueId %></td>
+                        <td> <a href="/api/v1/players/add">Create</a></td>
+                        <td> <a href="/api/v1/players/<%= element.id %>">Reed</a></td>
+                        <td> <a href="/api/v1/players/edit/<%= element.id %>">Edit</a></td>
+                        <td> <a href="/api/v1/players/remove/<%= element.id %>">Delete</a></td>
+                    </tr>
+                <% }) %>
+            </table>
+                </div>
+    </body>
+    </html>
