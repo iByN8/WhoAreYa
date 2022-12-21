@@ -13,7 +13,7 @@ router.get('/', function(req, res, next) {
   res.render('login', { error: '' });
 });
 
-router.post('/login', function(req, res, next) { 
+router.post('/', function(req, res, next) { 
     db.users.findOne({"email": req.body.email, "password": req.body.password},(err, docs) => {
         if (err) {
             res.render('login', { error: 'Las credenciales no son correctas' });
@@ -23,14 +23,15 @@ router.post('/login', function(req, res, next) {
             else if (docs.rol == "Admin") {
                 res.redirect('/crud')
             }else{
-                res.redirect('/protected')
+                res.send("Welcome User <a href=\'/logout'>click to logout</a>");
+               
             }
     })
 
   });
 
   router.get('/logout',(req,res) => {
-    req.session.destroy();
+   
     res.redirect('/')
   });
   

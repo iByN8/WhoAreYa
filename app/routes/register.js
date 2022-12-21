@@ -10,7 +10,7 @@ router.get('/', function(req, res, next) {
   res.render('register', { error: '' });
 });
 
-router.post('/register', function(req, res, next){
+router.post('/', function(req, res, next){
   db.users.insert({"name": req.body.name, "subname": req.body.subname, "email": req.body.email, "password": req.body.password, "rol": req.body.rol}, (err, result) => {
     if (err) {
         res.send(err)
