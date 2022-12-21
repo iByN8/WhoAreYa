@@ -23,7 +23,7 @@ router.post('/login', function(req, res, next) {
             else if (docs.rol == "Admin") {
                 res.redirect('/crud')
             }else{
-                
+                res.send('')
             }
     })
 
