@@ -123,25 +123,25 @@ let setupRows = function (game) {
     function setContent(guess) {
         if(check("birthdate",guess.birthdate)=="lower"){
             return [
-              `<img src="https://playfootball.games/who-are-ya/media/nations/${guess.nationality.toLowerCase()}.svg" alt="" style="width: 60%;">`,
-              `<img src="https://playfootball.games/media/competitions/${leagueToFlag(guess.leagueId)}.png" alt="" style="width: 60%;">`,
-              `<img src="https://cdn.sportmonks.com/images/soccer/teams/${guess.teamId % 32}/${guess.teamId}.png" alt="" style="width: 60%;">`,
+              `<img src="http://iheras006.eus/json/nationalities/${guess.nationality}.svg" alt="" style="width: 60%;">`,
+              `<img src="http://iheras006.eus/json/leagues/${leagueToFlag(guess.leagueId)}.png" alt="" style="width: 60%;">`,
+              `<img src="http://iheras006.eus/json/teams/${guess.teamId}.png" alt="" style="width: 60%;">`,
               `${guess.position}`,
               `${getAge(guess.birthdate)+lower}`
           ]
           }else if (check("birthdate",guess.birthdate)=="higher"){
             return [
-              `<img src="https://playfootball.games/who-are-ya/media/nations/${guess.nationality.toLowerCase()}.svg" alt="" style="width: 60%;">`,
-              `<img src="https://playfootball.games/media/competitions/${leagueToFlag(guess.leagueId)}.png" alt="" style="width: 60%;">`,
-              `<img src="https://cdn.sportmonks.com/images/soccer/teams/${guess.teamId % 32}/${guess.teamId}.png" alt="" style="width: 60%;">`,
+                `<img src="http://iheras006.eus/json/nationalities/${guess.nationality}.svg" alt="" style="width: 60%;">`,
+                `<img src="http://iheras006.eus/json/leagues/${leagueToFlag(guess.leagueId)}.png" alt="" style="width: 60%;">`,
+                `<img src="http://iheras006.eus/json/teams/${guess.teamId}.png" alt="" style="width: 60%;">`,
               `${guess.position}`,
               `${getAge(guess.birthdate)+higher}`
           ]
           }else{
             return [
-              `<img src="https://playfootball.games/who-are-ya/media/nations/${guess.nationality.toLowerCase()}.svg" alt="" style="width: 60%;">`,
-              `<img src="https://playfootball.games/media/competitions/${leagueToFlag(guess.leagueId)}.png" alt="" style="width: 60%;">`,
-              `<img src="https://cdn.sportmonks.com/images/soccer/teams/${guess.teamId % 32}/${guess.teamId}.png" alt="" style="width: 60%;">`,
+                `<img src="http://iheras006.eus/json/nationalities/${guess.nationality}.svg" alt="" style="width: 60%;">`,
+                `<img src="http://iheras006.eus/json/leagues/${leagueToFlag(guess.leagueId)}.png" alt="" style="width: 60%;">`,
+                `<img src="http://iheras006.eus/json/teams/${guess.teamId}.png" alt="" style="width: 60%;">`,
               `${guess.position}`,
               `${getAge(guess.birthdate)}`
           ]

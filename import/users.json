@@ -1,0 +1,28 @@
+[{
+  "_id": {
+    "$oid": "63a35e5a13ab6a35b48eb8da"
+  },
+  "name": "Joanes",
+  "subname": "Arriola",
+  "email": "joanes@email.com",
+  "password": "1234",
+  "rol": "Admin"
+},{
+  "_id": {
+    "$oid": "63a35e5a13ab6a35b48eb8db"
+  },
+  "name": "Eneko",
+  "subname": "Larruskain",
+  "email": "eneko@email.com",
+  "password": "1234",
+  "rol": "User"
+},{
+  "_id": {
+    "$oid": "63a37737334d6c39100fe720"
+  },
+  "name": "ibai",
+  "subname": "heras",
+  "email": "ibai@email.com",
+  "password": "1234",
+  "rol": "User"
+}]

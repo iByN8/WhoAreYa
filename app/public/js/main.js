@@ -57,9 +57,7 @@ Promise.all([fetchJSON("fullplayers"), fetchJSON("solution")]).then(
 
     document.getElementById(
       "mistery"
-    ).src = `https://playfootball.games/media/players/${
-      game.solution.id % 32
-    }/${game.solution.id}.png`;
+    ).src = `http://iheras006.eus/json/players/${game.solution.id}.png`;
 
     autocomplete(document.getElementById("myInput"), game)
      /*
