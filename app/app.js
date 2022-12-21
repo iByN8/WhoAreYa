@@ -9,8 +9,8 @@ const usersRouter = require('./routes/players');
 const formularioRouter = require('./routes/formulario');
 const editRouter = require('./routes/edit')
 const crudRouter = require('./routes/crud')
-const loginRouter = require('./routes/login')
 const registerRouter = require('./routes/register')
+const loginRouter = require('./routes/login')
 
 var app = express();
 
@@ -28,8 +28,8 @@ app.use(express.static(path.join(__dirname, 'public')));
 const mongojs = require('mongojs')
 const db = mongojs('mongodb://127.0.0.1:27017/footballdata', ['players'])
 
-app.use('/', loginRouter);
-app.use('/api/v1/players', usersRouter);
+app.use('/', loginRouter)
+app.use('/api/v1/players', usersRouter)
 app.use('/formulario', formularioRouter)
 app.use('/edit',editRouter)
 app.use('/crud', crudRouter)
