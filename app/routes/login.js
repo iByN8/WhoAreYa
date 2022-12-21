@@ -5,8 +5,8 @@ var router = express.Router();
 const mongojs = require('mongojs')
 const db = mongojs('mongodb://127.0.0.1:27017/footballdata', ['users'])
 
-db.users.insert({name: "Joanes", subname: "Arriola", email: "joanes@email.com", password: "1234", rol: "Admin"})
-db.users.insert({name: "Eneko", subname: "Larruskain", email: "eneko@email.com", password: "1234", rol: "User"})
+//db.users.insert({name: "Joanes", subname: "Arriola", email: "joanes@email.com", password: "1234", rol: "Admin"})
+//db.users.insert({name: "Eneko", subname: "Larruskain", email: "eneko@email.com", password: "1234", rol: "User"})
 
 /* GET home page. */
 router.get('/', function(req, res, next) {

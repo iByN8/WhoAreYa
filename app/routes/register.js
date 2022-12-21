@@ -11,7 +11,7 @@ router.get('/', function(req, res, next) {
 });
 
 router.post('/register', function(req, res, next){
-  db.players.insert({"name": req.body.Nombre, "subname": req.body.Apellidos, "email": req.body.correo, "password": req.body.Contraseña, "rol": "User"}, (err, result) => {
+  db.users.insert({"name": req.body.name, "subname": req.body.subname, "email": req.body.email, "password": req.body.password, "rol": 'User'}, (err, result) => {
     if (err) {
         res.send(err)
     } else {
