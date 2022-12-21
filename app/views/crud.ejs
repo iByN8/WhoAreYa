@@ -2,36 +2,46 @@
 <html>
     <body>
         <div id="main">
-            <table class="table table-striped">
-                <thead class="thead-dark">
-                <tr>
-                    <th>ID</th>
-                    <th>Name</th>
-                    <th>Birthdate</th>
-                    <th>Nationality</th>
-                    <th>TeamId</th>
-                    <th>Position</th>
-                    <th>Number</th>
-                    <th>LeagueId</th>
-                </tr>
-                </thead>
-                <% elements.forEach( element => { %>
-                    <tr>
-                        <td> <%= element.id %></td>
-                        <td> <%= element.name %></td>
-                        <td> <%= element.birthdate %></td>
-                        <td> <%= element.nationality %></td>
-                        <td> <%= element.teamId %></td>
-                        <td> <%= element.position %></td>
-                        <td> <%= element.number %></td>
-                        <td> <%= element.leagueId %></td>
-                        <td> <a href="/api/v1/players/add">Create</a></td>
-                        <td> <a href="/api/v1/players/<%= element.id %>">Reed</a></td>
-                        <td> <a href="/api/v1/players/edit/<%= element.id %>">Edit</a></td>
-                        <td> <a href="/api/v1/players/remove/<%= element.id %>">Delete</a></td>
-                    </tr>
-                <% }) %>
-            </table>
-                </div>
-    </body>
-    </html>
+            <form action="/edit/<%=element.id%>" method="post">
+                    <label for="name">Nombre</label>
+                    <br>
+                    <input type="text" id="name" name="name" value="<%=element.name%>">
+                    <br>
+                    <br>
+                    <label for="name">Fecha de nacimiento</label>
+                    <br>
+                    <input type="text" id="birthdate" name="birthdate" value="<%=element.birthdate%>">
+                    <br>
+                    <br>
+                    <label for="name">Nacionalidad</label>
+                    <br>
+                    <input type="text" id="nationality" name="nationality" value="<%=element.nationality%>">
+                    <br>
+                    <br>
+                    <label for="name">TeamId</label>
+                    <br>
+                    <input type="text" id="teamId" name="teamId" value="<%=element.teamId%>">
+                    <br>
+                    <br>
+                    <label for="name">Posición</label>
+                    <br>
+                    <input type="text" id="position" name="position" value="<%=element.position%>">
+                    <br>
+                    <br>
+                    <label for="name">Numero</label>
+                    <br>
+                    <input type="text" id="number" name="number" value="<%=element.number%>">
+                    <br>
+                    <br>
+                    <label for="name">LeagueId</label>
+                    <br>
+                    <input type="text" id="leagueId" name="leagueId" value="<%=element.leagueId%>">
+                    <br>
+                    <br>
+                    <br>
+            
+                    <input type="submit" class="form-submit" value="Añadir">
+            </form>
+            </div>
+</body>
+</html>

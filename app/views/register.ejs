@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+  <head>
+  </head>
+  <body>
+    <form action="/user" method="post">
+      <h2>Register</h2>
+      <br>
+      <div class="input-field">
+        <label for="name">Nombre</label>
+        <br>
+        <input type="text" name="Nombre" id="Nombre">
+      </div>
+      <br>
+      <br>
+      <div class="input-field">
+        <label for="name">Apellidos</label>
+        <br>
+        <input type="text" name="Apellidos" id="Apellidos">
+      </div>
+      <br>
+      <br>
+      <div class="input-field">
+        <label for="name">Correo electrónico</label>
+        <br>
+        <input type="email" name="correo" id="correo">
+      </div>
+      <br>
+      <br>
+      <div class="input-field">
+        <label for="name">Contraseña</label>
+        <br>
+        <input type="password" name="Contraseña" id="Contraseña">
+      </div>
+
+      <br>
+      <br>
+      <input type="submit" value="LogIn">
+      <div>
+        <p style="color: red"><%=error%></p>
+      </div>
+    </form>
+  </body>
+</html>
