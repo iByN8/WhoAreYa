@@ -19,17 +19,4 @@ router.get('/', function(req, res, next) {
   }
   });
 
-
-  router.post('/reed', function(req, res, next) {
-    res.redirect('/api/v1/players/'+req.body.id)
-  });
-
-  router.post('/edit', function(req, res, next) {
-    res.redirect('/api/v1/players/edit/'+req.body.id);
-  });
-
-  router.post('/remove', function(req, res, next) {
-    res.redirect('/api/v1/players/remove/'+req.body.id);
-  });
-
 module.exports = router;
