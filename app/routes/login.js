@@ -21,27 +21,23 @@ router.post('/', function(req, res, next) {
             res.render('login', {error: 'Las credenciales no son correctas'});
             }
             else if (docs.rol == "Admin") {
+                req.session.email = docs.email
+                req.session.rol = docs.rol
                 res.redirect('/crud')
+
             }else{
-                res.send("Welcome User <a href=\'/logout'>click to logout</a>");
-               
+                res.send("Welcome User <a href=\'/login/logout'>click to logout</a>");
             }
     })
 
   });
 
   router.get('/logout',(req,res) => {
-   
+    req.session.destroy();
     res.redirect('/')
   });
   
-  router.get('/protected',(req,res) => {
-    if(req.session.userid){
-      res.send("Welcome User <a href=\'/logout'>click to logout</a>");
-    }else
-      res.render('index', { error: '' });
-  });
-
+ 
   router.post('/register', function(req, res, next) { 
     res.redirect('/register')
   });

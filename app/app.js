@@ -3,6 +3,7 @@ var express = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
+const session = require('express-session')
 
 const indexRouter = require('./routes/index');
 const usersRouter = require('./routes/players');
@@ -39,6 +40,11 @@ app.use('/api/v1/players/remove/:id', usersRouter)
 app.use('/api/v1/players/add', usersRouter)
 app.use('/api/V1/players/edit', usersRouter)*/
 
+const sess = {
+  secret: 'ausazko hitz multzoa',
+  cookie: {}
+}
+app.use(session(sess))
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
