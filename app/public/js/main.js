@@ -4,6 +4,7 @@ import {setupRows} from "./rows.js";
 import {autocomplete} from "./autocomplete.js"
 
 
+
 function differenceInDays(date1) {
   const date = new Date()
   let fechaInicio = date1.getTime();

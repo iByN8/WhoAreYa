@@ -20,8 +20,10 @@ router.post('/login', function(req, res, next) {
         } else if (docs.length == 0) {
             res.render('login', {error: 'Las credenciales no son correctas'});
             }
-            else {
+            else if (docs.rol == "Admin") {
                 res.redirect('/crud')
+            }else{
+                res.redirect('/')
             }
     })
 

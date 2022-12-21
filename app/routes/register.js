@@ -11,11 +11,11 @@ router.get('/', function(req, res, next) {
 });
 
 router.post('/register', function(req, res, next){
-  db.users.insert({"name": req.body.name, "subname": req.body.subname, "email": req.body.email, "password": req.body.password, "rol": 'User'}, (err, result) => {
+  db.users.insert({"name": req.body.name, "subname": req.body.subname, "email": req.body.email, "password": req.body.password, "rol": req.body.rol}, (err, result) => {
     if (err) {
         res.send(err)
     } else {
-        res.redirect('/')
+        res.redirect('/login')
     }
 })    
 });
